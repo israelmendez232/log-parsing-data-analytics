@@ -1,13 +1,13 @@
-# Log Parsing - Data Analyticslog-parsing-data-analytics
+# Log Parsing - Data Analytics
 A solution to read a log file from an [Nginx](https://www.nginx.com/) application and parse it into a SQL database for analytics.
 
 ## Summary
-1. [Steps to run](#1-steps-to-run)
-2. [Architecture](#2-architecture)
-2.1 [Data Warehouse](#21-data-warehouse)
-2.2 [Services Management](#22-services-management)
-2.3 [Data](#23-data)
-2.4 [ETL](#24-etl)
+1. [Steps to run](#1-steps-to-run) <br>
+2. [Architecture](#2-architecture) <br>
+  2.1 [Data Warehouse](#21-data-warehouse) <br>
+  2.2 [Services Management](#22-services-management) <br>
+  2.3 [Data](#23-data) <br>
+  2.4 [ETL](#24-etl)
 
 ## 1. Steps to Run
 1. Git clone this repository and move into it:

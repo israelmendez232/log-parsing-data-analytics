@@ -79,4 +79,4 @@ def main():
     trusted_zone(engine, 'logs')
     engine.dispose()
 
-    print("===> Done with all ETL!")
+    print("===> Done with all the ETL!")

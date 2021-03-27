@@ -34,7 +34,7 @@ def structure_data_warehouse():
     """
     # STRUCTURE OF THE DATA WAREHOUSE
 
-    Creates and manages the pattern for the data warehouse. Such as roles, schemas and users.
+    Creates and manages the pattern for the data warehouse. Such as roles, schemas, and users.
     
     """
     engine = get_engine('root')
