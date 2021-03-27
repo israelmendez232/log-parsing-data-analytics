@@ -2,7 +2,7 @@ import pandas as pd
 from random import randrange
 
 def insert_log():
-    log_file = "../logs/ngix.log"
+    log_file = "./logs/ngix.log"
     df = pd.read_csv(log_file, delimiter = "\t", sep=" ", header=None)
     lines = len(df.index) + 1 # To make sure that every line will be selected
 

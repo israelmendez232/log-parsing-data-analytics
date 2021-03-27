@@ -8,18 +8,22 @@ services:
       - .env
     ports:
       - "5432:5432"
+    logging:
+        driver: none 
     restart: unless-stopped
 
-  # etl:
-  #   container_name: etl_scripts
-  #   build: .
-  #   env_file:
-  #     - .env
-  #   depends_on:
-  #     - data_warehouse
-  #   ports:
-  #     - "8081:8081"
-  #   restart: unless-stopped
+  etl:
+    container_name: etl_scripts
+    build: .
+    env_file:
+      - .env
+    depends_on:
+      - data_warehouse
+    ports:
+      - "8081:8081"
+    restart: unless-stopped
+    volumes:
+      - /logs:/logs
 
 networks:
   default:

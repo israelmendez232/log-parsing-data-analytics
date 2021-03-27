@@ -4,7 +4,7 @@ from data_warehouse import get_engine
 from datetime import datetime
 
 def raw_zone(engine_db, table: str):
-    log_file = "../logs/ngix.log"
+    log_file = "./logs/ngix.log"
 
     df = pd.read_csv(log_file,
               sep=r'\s(?=(?:[^"]*"[^"]*")*[^"]*$)(?![^\[]*\])',
