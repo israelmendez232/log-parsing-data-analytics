@@ -1,0 +1,14 @@
+FROM python:3.8-slim-buster
+LABEL version="1.0"
+LABEL description="Script to read and generate analytics from a log file."
+
+COPY requirements.txt requirements.txt
+COPY .env .env
+
+RUN pip3 install -r requirements.txt
+
+COPY ./scripts/ scripts/
+WORKDIR /scripts/
+EXPOSE 8888
+
+CMD [ "python3", "orchestration.py" ]
