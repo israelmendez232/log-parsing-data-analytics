@@ -1,16 +1,11 @@
-FROM ubuntu:latest
+FROM python:3.8-slim-buster
 LABEL version="1.0"
 LABEL description="Script to read and generate analytics from a log file."
 
 COPY requirements.txt requirements.txt
 COPY .env .env
 
-RUN apt-get update \
-  && apt-get install -y python3-pip python3-dev \
-  && cd /usr/local/bin \
-  && ln -s /usr/bin/python3 python \
-  && pip3 install --upgrade pip \
-  && pip3 install -r requirements.txt
+RUN pip3 install -r requirements.txt
 
 COPY ./scripts/ scripts/
 WORKDIR /scripts/
