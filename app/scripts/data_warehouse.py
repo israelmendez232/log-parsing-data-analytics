@@ -2,6 +2,21 @@ import os
 from sqlalchemy import create_engine
 
 def get_engine(type_user: str):
+    """
+    # GET ENGINE
+
+    Connects into the data warehouse.
+
+    Parameters
+    ----------
+    type_user : string
+        The type of the users that it's been used for to connect the database.
+
+    Returns
+    -------
+    engine : connection
+        Return the connection for the DW.
+    """
     if type_user == 'root':
         username = os.environ['POSTGRES_USER']
         password = os.environ['POSTGRES_PASSWORD']
@@ -16,6 +31,12 @@ def get_engine(type_user: str):
     return engine
 
 def structure_data_warehouse():
+    """
+    # STRUCTURE OF THE DATA WAREHOUSE
+
+    Creates and manages the pattern for the data warehouse. Such as roles, schemas and users.
+    
+    """
     engine = get_engine('root')
     password = os.environ['password_personal_user']
     username = os.environ['name_personal_user']

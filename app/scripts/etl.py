@@ -4,6 +4,18 @@ from data_warehouse import get_engine
 from datetime import datetime
 
 def raw_zone(engine_db, table: str):
+    """
+    # RAW ZONE
+
+    Transform the JSON data into a tabular format for the `trusted` schema/dataset.
+
+    Parameters
+    ----------
+    engine_db : connection
+        The connection to send data into the data warehouse
+    table : str
+        The table name will be used to save into the storage and data warehouse.
+    """
     log_file = "./logs/nginx.log"
 
     df = pd.read_csv(log_file,
@@ -35,6 +47,18 @@ def raw_zone(engine_db, table: str):
     print(f"===> Success to save {schema}.{table}.")
 
 def trusted_zone(engine, table: str):
+    """
+    # TRUSTED ZONE
+
+    Transform the JSON data into a tabular format for the `TRUSTED` schema/dataset.
+
+    Parameters
+    ----------
+    engine_db : connection
+        The connection to send data into the data warehouse
+    table : str
+        The table name will be used to save into the storage and data warehouse.
+    """
     schema = 'trusted'
     drop_old_table = f"DROP TABLE IF EXISTS {schema}.{table};"
     new_table = f"""
@@ -45,8 +69,8 @@ def trusted_zone(engine, table: str):
             AND reftime = (SELECT MAX(reftime) FROM raw.{table})
     """
 
-    engine.execute(drop_old_table)
-    engine.execute(new_table)
+    engine_db.execute(drop_old_table)
+    engine_db.execute(new_table)
     print(f"===> Success to save {schema}.{table}.")
 
 def main():

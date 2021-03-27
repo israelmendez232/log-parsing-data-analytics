@@ -2,6 +2,13 @@ import pandas as pd
 from random import randrange
 
 def insert_log():
+    """
+    # INSERT THE LOG
+
+    Inserting the logs into the file to simulate a real envoironment of data generation.
+
+    """
+    
     log_file = "./logs/nginx.log"
     df = pd.read_csv(log_file, delimiter = "\t", sep=" ", header=None)
     lines = len(df.index) + 1 # To make sure that every line will be selected

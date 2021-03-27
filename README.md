@@ -16,9 +16,14 @@ git clone https://github.com/israelmendez232/log-parsing-data-analytics.git
 cd ./log-parsing-data-analytics
 ```
 
-2. Enter on the `app` folder on where the scripts are running. And run the containers:
+2. Modify and copy the `.env.sample` with the credentials you may prefer:
 ``` bash
 cd ./app
+cp .env.sample .env
+```
+
+3. Enter on the `app` folder on where the scripts are running. And run the containers:
+``` bash
 docker-compose up
 ```
 
