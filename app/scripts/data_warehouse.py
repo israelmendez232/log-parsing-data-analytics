@@ -31,17 +31,17 @@ def structure_data_warehouse():
         ,  "CREATE SCHEMA IF NOT EXISTS trusted;"
         ,  "CREATE SCHEMA IF NOT EXISTS analytics;"
         
-        # Grant main access to schemas and tables        
-        ,  "GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA raw TO admin_user;"
-        ,  "GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA trusted TO admin_user;"
-        ,  "GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA trusted TO advanced_user;" 
-        ,  "GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA analytics TO admin_user;"
-        ,  "GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA analytics TO advanced_user;" 
-        ,  "GRANT SELECT ON ALL TABLES IN SCHEMA analytics TO essencial_user;"
-        
         # Create my user to connect and deliver the data
         ,  f"CREATE USER {username} WITH PASSWORD '{password}';"
         ,  f"GRANT admin_user TO {username};"
+        
+        # Grant main access to schemas and tables        
+        ,  "GRANT ALL ON SCHEMA raw TO admin_user;"
+        ,  "GRANT ALL ON SCHEMA trusted TO admin_user;"
+        ,  "GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA trusted TO advanced_user;" 
+        ,  "GRANT ALL ON SCHEMA analytics TO admin_user;"
+        ,  "GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA analytics TO advanced_user;" 
+        ,  "GRANT SELECT ON ALL TABLES IN SCHEMA analytics TO essencial_user;"
     ]
     
     for query in queries:

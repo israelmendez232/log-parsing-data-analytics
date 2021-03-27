@@ -8,6 +8,7 @@ import time
 try:
     structure_data_warehouse() 
 except:
+    print("===> Configurations already set on DW.")
     pass
 
 # 2. Loop to handle all scripts
@@ -21,7 +22,8 @@ while True:
     time.sleep(2) 
 
     # 2.3 Get the results for few "questions"
-    query = 'SELECT COUNT(time) AS requests, status AS status_code FROM public.teste GROUP BY status_code ORDER BY requests DESC'
+    query = f'SELECT COUNT(*) AS requests, status_code FROM trusted.logs GROUP BY status_code ORDER BY requests DESC'
     result = get_data_dw(query)
+    print("===> Results based on requests and status_code:")
     print(result)
     time.sleep(2) 

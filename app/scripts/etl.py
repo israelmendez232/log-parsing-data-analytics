@@ -21,22 +21,33 @@ def raw_zone(engine_db, table: str):
     month = now.strftime("%m")
     day = now.strftime("%d")
     refdate = now.strftime("%Y%m%d")
-    time = now.strftime("%H%M%S")
+    reftime = now.strftime("%H%M%S")
 
     df['year'] = year
     df['month'] = month
     df['day'] = day
+    df['reftime'] = reftime
     df['refdate'] = refdate
     
     # Insert the final data
     schema = 'raw'
     df.to_sql(table, engine_db, schema, index = False, if_exists = 'append')
-    print("===> Success to save {schema}.{table}.")
+    print(f"===> Success to save {schema}.{table}.")
 
 def trusted_zone(engine, table: str):
-    query = "INSERT INTO trusted.{table} SELECT * FROM raw.{table} WHERE refdate = (SELECT MAX(refdate) FROM raw.{table})"
-    engine.execute(query)
-    print("===> Success to save {schema}.{table}.")
+    schema = 'trusted'
+    drop_old_table = f"DROP TABLE IF EXISTS {schema}.{table};"
+    new_table = f"""
+        CREATE TABLE {schema}.{table} AS 
+        SELECT * 
+        FROM raw.{table} 
+        WHERE refdate = (SELECT MAX(refdate) FROM raw.{table}) 
+            AND reftime = (SELECT MAX(reftime) FROM raw.{table})
+    """
+
+    engine.execute(drop_old_table)
+    engine.execute(new_table)
+    print(f"===> Success to save {schema}.{table}.")
 
 def main():
     engine = get_engine('admin')
