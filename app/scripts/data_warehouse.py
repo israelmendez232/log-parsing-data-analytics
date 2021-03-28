@@ -26,8 +26,9 @@ def get_engine(type_user: str):
         
     database = os.environ['POSTGRES_DB']
     host = os.environ['DW_HOST']
-    
-    engine = create_engine(f'postgresql://{username}:{password}@{host}:5432/{database}')
+
+    connection = f'postgresql://{username}:{password}@{host}:5432/{database}'
+    engine = create_engine(connection)
     return engine
 
 def structure_data_warehouse():
@@ -64,7 +65,7 @@ def structure_data_warehouse():
         ,  "GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA analytics TO advanced_user;" 
         ,  "GRANT SELECT ON ALL TABLES IN SCHEMA analytics TO essencial_user;"
     ]
-    
+
     for query in queries:
         engine.execute(query)
         

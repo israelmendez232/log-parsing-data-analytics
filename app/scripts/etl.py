@@ -46,7 +46,7 @@ def raw_zone(engine_db, table: str):
     df.to_sql(table, engine_db, schema, index = False, if_exists = 'append')
     print(f"===> Success to save {schema}.{table}.")
 
-def trusted_zone(engine, table: str):
+def trusted_zone(engine_db, table: str):
     """
     # TRUSTED ZONE
 

@@ -6,9 +6,9 @@ import time
 
 # 1. Configure the right settings for the DW
 try:
-    structure_data_warehouse() 
+    structure_data_warehouse()  
 except:
-    print("===> Configurations already set on DW.")
+    print("===> Already configured the DW.")
     pass
 
 # 2. Loop to handle all scripts
@@ -26,4 +26,4 @@ while True:
     result = get_data_dw(query)
     print("===> Results based on requests and status_code:")
     print(result)
-    time.sleep(2) 
+    time.sleep(2)
