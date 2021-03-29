@@ -27,6 +27,8 @@ cp .env.sample .env
 docker-compose up
 ```
 
+**IMPORTANT:** You will have to wait a few minutes to start all the configurations, installation, and the code itself to run. Because the ETL will wait until the data warehouse will be ready to be used.
+
 The application will print every step, such as the ETL and the results for analytics based on the request on the status code. 
 
 ## 2. Architecture
